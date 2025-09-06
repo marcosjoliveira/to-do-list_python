@@ -23,18 +23,26 @@ def add_task(task):
     with open("task.txt", "a") as files:
         files.write(task + '\n')
 
-# def remove_task():
-#     with open("task.txt", "r+") as files:
-#         task = files.readlines()
-#         for item in enumerate(task): #remover tarefa
-#             print(item)
-#         index = int(input("Input the index that you wanna to delete: "))
-#         task.pop(index)
+def remove_task():
+    
+    with open("task.txt", "r+") as files:
+        
+        task = files.readlines()
+        
+        for item in enumerate(task): #remover tarefa
+            print(item)
 
-#         for item in task: #atualizar a lista
-#             with open("task.txt", "w") as file:
-#                 file.write(str(task[item]))
+        index = int(input("Input the index that you wanna to delete: "))
+        
+        task.pop(index)
+        
+        itens = 0
+        
+        files.seek(0)
+        files.truncate()
 
+        for itens in range(len(task)):
+            files.write(task[itens])
 
 while True:    
     
@@ -51,12 +59,11 @@ while True:
         add_task(add)
         time.sleep(2.5)
         clean()
-        print("Updated tasks: ", show_tasks())
-        time.sleep(2.5)
+        time.sleep(1.5)
     
-    # elif select == 3: #remover tarefas
-    #     clean()
-    #     remove_task()
+    elif select == 3: #remover tarefas
+        clean()
+        remove_task()
     
     elif select == 4: #finalizar tarefas
         clean()
